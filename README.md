@@ -8,7 +8,7 @@ Features:
  - Performance finder class for finding and plotting precision-recall curves of classifier model, as well as mean dice calculator to evaluate overall performance of model as per SIIM-ACR contest
  - Prediction class for plotting side-by-side model predictions and radiologist ground truths 
  
-L=3 depth U-Net++ model pretrained on ImageNet avaiable at (url)
+L=3 depth U-Net++ model pretrained on ImageNet avaiable at https://drive.google.com/drive/folders/1Xrf77veOoGOegThvm7a-za0WgO1j7Su8?usp=sharing
 
 ## Demonstrations 
 
