@@ -26,7 +26,7 @@ Use this to pretrain a **segmentation** model on ImageNet/other data before trai
 ### train_classifier.py
 Train the classifier model. 
  - **Required input format**: X-ray images should be in **.dicom** format, of any dimensions.
- - **Required label format**: **.csv** file with two headers: **'ImageId'** and **'Class'**. ImageId should be the name of the image without the .dcm extension. Class should be 0 for negative samples, and 1 for positive samples. See train_classifier.csv for an example. 
+ - **Required label format**: **.csv** file with two headers: **'ImageId'** and **'Class'**. ImageId should be the name of the image without the .dcm extension. Class should be 0 for negative samples, and 1 for positive samples. See train_classifier_example.csv for an example. 
 
 Set training parameters:
  - Edit the config.ini file to set batch_size, resize_to, and train_prop
@@ -39,7 +39,18 @@ Further options:
  - you can choose a different backbone by adjusting the **'bb'** parameter of the create_classification_model function: 'DenseNet121', 'DenseNet169', 'DenseNet201' are supported already but more can easily be added in the models.py file
 
 ### train_seg.py
-
+Train the segmentation model. Both U-Net and U-Net++ are available. 
+ - **Required input format**: X-ray images should be in **.dicom** format, of any dimensions.
+ - **Required label format**: **.csv** file with two headers: **'ImageId'** and **'EncodedPixels'**. ImageId should be the name of the image without the .dcm extension. EncodedPixels should be the RLE-format encoded ground truth segmentation map. If there is no pneumothorax in the image, ie a negative sample, the value for EncodedPixels should be -1. See train_seg_example.csv for an example. 
+ 
+ Set training parameters:
+  - mostly the same as for train_classifier
+  - note beta_pixel_weighting: this is the average percentage of label = 1 pixels in an image in the training set, used for the weighted pixel binary cross-entropy loss function. 
+  
+  Further options:
+   - choice of loss: dice loss (1 - dice coefficient), weighted pixel BCE loss, and combined loss (default is 2x dice loss + 1x weighted pixel loss).
+   - same augmentation options as classifier - augments images and segmentation maps together. 
+   - can change depth of U-Net++ in create_segmentation_model function. Eg., l=3 will create a U-Net++ model with 3 downsampling and 3 upsampling steps. Plain U-Net can be constructed using architecture='unet'. 
 
 ### learning rate finder
 
