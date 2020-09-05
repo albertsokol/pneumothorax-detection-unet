@@ -53,13 +53,32 @@ Train the segmentation model. Both U-Net and U-Net++ are available.
    - can change depth of U-Net++ in create_segmentation_model function. Eg., `l=3` will create a U-Net++ model with 3 downsampling and 3 upsampling steps. Plain U-Net can be constructed using `architecture='unet'`. 
 
 ### learning rate finder
+The learning rate finder can be activated by setting `mode='lrf'`. 
+
+This mode cycles through all feasible learning rates, and plots the loss against the learning rate. Using this, you can find the optimal learning rate for your configuration. 
+
+Use at least 1000 training steps for best results. 
+
 
 
 ## Prediction 
 
 ## performance.py 
+This file can be used to plot precision-recall curves or find the mean dice score of the prediction pipeline. 
+
+### Plotting precision-recall
+The output of the classifier model is a float between 0 and 1. The classifier threshold can be changed to affect the precision and recall of the model.
+
+For example, if set to 0.8, only X-rays which generate an output of >0.8 will be passed to the segmentation model.
+
+### Mean dice score
+This follows the Kaggle contest linked above, and calculates the mean dice score of the classifier and segmentation pipeline at a single classifier threshold. 
+
+You can try testing the mean dice score at many different classifier thresholds to choose the one with best performance.
 
 ## References 
+U-Net https://arxiv.org/pdf/1505.04597.pdf
 
+U-Net++ https://arxiv.org/pdf/1912.05074.pdf
 
 
