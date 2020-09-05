@@ -59,7 +59,7 @@ This mode cycles through all feasible learning rates, and plots the loss against
 
 Use at least 1000 training steps for best results. 
 
-
+![Image of LRF plot](https://github.com/albertsokol/pneumothorax-detection-unet/blob/master/readme%20images/lrf_labelled.png)
 
 ## Prediction 
 
