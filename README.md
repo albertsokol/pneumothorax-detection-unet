@@ -62,6 +62,17 @@ Use at least 1000 training steps for best results.
 ![Image of LRF plot](https://github.com/albertsokol/pneumothorax-detection-unet/blob/master/readme%20images/lrf_labelled.png)
 
 ## Prediction 
+This file will run the prediction pipeline.
+
+Images are fed to the classification model. If the output is higher than `classifier_threshold`, they are also fed to the segmentation model. Note that as the classifier model uses RGB and the segmentation model uses Grayscale, the image is converted during the process. The prediction file uses the `train_prop` value to select only validation set images for displaying predictions. If you had a test set, you could re-configure this. 
+
+The predict function then plots ground truth and predicted images side by side.
+
+On the left is the ground truth label, and if there is a ground truth segmentation map, it is displayed in red on the image.
+
+On the right is the predicted label, the confidence in the prediction `(classifier output * 100)` and the predicted segmentation map if appropriate. Brighter areas represent higher confidence by the segmentation model. 
+
+![Image of prediction plot](https://github.com/albertsokol/pneumothorax-detection-unet/blob/master/readme%20images/predict.png)
 
 ## performance.py 
 This file can be used to plot precision-recall curves or find the mean dice score of the prediction pipeline. 
