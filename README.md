@@ -11,6 +11,8 @@ Features:
 L=3 depth U-Net++ model pretrained on ImageNet available at: https://drive.google.com/drive/folders/1Xrf77veOoGOegThvm7a-za0WgO1j7Su8
 
 ## Demo 
+[![Demo of model](https://github.com/albertsokol/pneumothorax-detection-unet/blob/master/readme%20images/yout.png)](https://www.youtube.com/watch?v=DwWl1vok5wY "My UNet++ implementation : pneumothorax classification & segmentation")
+
 
 ## Training
 There are 3 different training files: 
